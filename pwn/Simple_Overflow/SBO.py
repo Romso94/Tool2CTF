@@ -47,7 +47,8 @@ p.interactive()
 
 
 def help():
-    print("""
+    print("""  
+Simple Buffer Overflow Configurator                                                                                                                                                                                                            
 Description:
 This tool generates a Python file (buffer.py) for a simple buffer overflow exploit.
 You need to modify the communication part with the server according to your needs.
