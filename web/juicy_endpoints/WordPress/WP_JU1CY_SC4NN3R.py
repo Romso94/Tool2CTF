@@ -1,4 +1,6 @@
 import sys
+import threading
+import time
 from urllib.parse import urlparse
 from tabulate import tabulate
 import requests
@@ -29,8 +31,19 @@ WP_Ju1cy_3ndp01nts = [
     "wp-json/wp/v2/users"
 ]
 
-def H4X0R(L1ST3, URL, F1L3=None):
+def animate():
+    while True:
+        for char in "/-\\|":
+            print(f"\rScanning en cours {char}", end="", flush=True)
+            time.sleep(0.2)
+
+def H4X0R(L1ST3, URL, F1L3=None, OutPut=False):
     T3ST3D = []
+
+    # Démarrer l'animation dans un thread séparé
+    animation_thread = threading.Thread(target=animate)
+    animation_thread.daemon = True
+    animation_thread.start()
 
     if F1L3:
         try:
@@ -47,7 +60,19 @@ def H4X0R(L1ST3, URL, F1L3=None):
         except requests.RequestException as e:
             T3ST3D.append([full_url, str(e)])
     
+    if OutPut:
+        OutPuT(T3ST3D, URL)
+
+    # Arrêter l'animation
+    print("\r" + " " * 20 + "\r", end="", flush=True)  # Effacer le message
     print(tabulate(T3ST3D, headers=["URL", "R3SP0NS3"], tablefmt="rounded_grid"))
+
+
+def OutPuT(t4b,URL):
+    with open(f"./{URL.split('http://')[1]}.html","w",encoding="utf-8") as f:
+        f.write(tabulate(t4b, headers=["URL", "R3SP0NS3"], tablefmt="unsafehtml"))
+    
+    return
 
 def H3LP():
     help_text = """
@@ -57,6 +82,7 @@ def H3LP():
     -h, --help, h, help      Sh0w th1s h3lp m3ssag3 4nd 3x1t
     -u URL, -U URL           Sp3c1fy th3 b4s3 URL t0 sc4n
     -f FILE, -F FILE         Sp3c1fy 4 TXT f1l3 c0nt41n1ng 4dd1t10n4l 3ndp01nts t0 sc4n
+    -o, -O                   Sp3c1fy 1f Y0U W4nt 4n 0utput f1l3 1n HTML
 
     Example:
     python WP_JU1CY_SC4NN3R.py -u http://example.com -f endpoints.txt
@@ -72,7 +98,7 @@ def format_url(url):
 
 if __name__ == "__main__":
     C0mm4nd3 = sys.argv
-    URL, P4TH_TO_F1L3 = None, None
+    URL, P4TH_TO_F1L3, Output = None, None, None
     
     if len(sys.argv) < 2 or sys.argv[1] in ["-h", "--help", "h", "help"]:
         H3LP()
@@ -91,8 +117,11 @@ if __name__ == "__main__":
             P4TH_TO_F1L3 = C0mm4nd3[Ind3x]
         else:
             sys.exit("3rr0r : N0 p4th t0 f1l3 f0und 4ft3r '-f'")
+    
+    if "-o" in C0mm4nd3 or "-O" in C0mm4nd3:
+        Output = True
 
-    H4X0R(WP_Ju1cy_3ndp01nts, URL, P4TH_TO_F1L3)
+    H4X0R(WP_Ju1cy_3ndp01nts, URL, P4TH_TO_F1L3, Output)
 
 
 
