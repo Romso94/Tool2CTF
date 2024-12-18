@@ -1,34 +1,106 @@
 import sys
 import threading
 import time
+from typing import Counter
 from urllib.parse import urlparse
 from tabulate import tabulate
 import requests
 
 WP_Ju1cy_3ndp01nts = [
+    # Administration
     "wp-admin.php",
+    "wp-admin/",
+    "wp-login.php",
+    "wp-signup.php",
+    "wp-activate.php",
+    
+    # Configuration
     "wp-config.php",
+    "wp-settings.php",
+    "wp-load.php",
+    
+    # Core WordPress
+    "index.php",
+    "wp-blog-header.php",
+    "wp-links-opml.php",
+    "wp-cron.php",
+    "wp-mail.php",
+    "wp-links.php",
+    "wp-trackback.php",
+    "xmlrpc.php",
+    
+    # Includes
+    "wp-includes/",
+    "wp-includes/version.php",
+    "wp-includes/functions.php",
+    
+    # Content
+    "wp-content/",
     "wp-content/uploads/",
     "wp-content/themes/",
     "wp-content/plugins/",
-    "wp-admin",
-    "wp-load",
-    "wp-signup.php",
-    "wp-json",
-    "wp-includes",
-    "index.php",
-    "wp-login.php",
-    "wp-links-opml.php",
-    "wp-activate.php",
-    "wp-cron.php",
-    "wp-links.php",
-    "wp-mail.php",
-    "xmlrpc.php",
-    "wp-settings.php",
-    "wp-trackback.php",
-    "admin-bar.php",
-    "wp-blog-header.php",
-    "wp-json/wp/v2/users"
+    "wp-content/mu-plugins/",
+    "wp-content/languages/",
+    "wp-content/upgrade/",
+    "wp-content/cache/",
+    
+    # Debug & Logs
+    "wp-content/debug.log",
+    "wp-content/backup-db/",
+    "wp-content/backups/",
+    "wp-content/updraft/",
+    
+    # JSON API Endpoints
+    "wp-json/",
+    "wp-json/wp/v2/users",
+    "wp-json/wp/v2/posts",
+    "wp-json/wp/v2/pages",
+    "wp-json/wp/v2/media",
+    "wp-json/wp/v2/categories",
+    "wp-json/wp/v2/tags",
+    "wp-json/wp/v2/comments",
+    
+    # Advanced JSON Endpoints
+    "wp-json/wp/v2/taxonomies",
+    "wp-json/wp/v2/types",
+    "wp-json/wp/v2/statuses",
+    "wp-json/wp/v2/settings",
+    "wp-json/wp/v2/themes",
+    "wp-json/wp/v2/plugins",
+    "wp-json/wp/v2/search",
+    
+    # User-Specific
+    "wp-json/wp/v2/users/me",
+    
+    # Blocks & Patterns
+    "wp-json/wp/v2/blocks",
+    "wp-json/wp/v2/block-types",
+    "wp-json/wp/v2/block-renderer",
+    "wp-json/wp/v2/block-directory",
+    "wp-json/wp/v2/pattern-directory",
+    "wp-json/wp/v2/global-styles",
+    
+    # Advanced Endpoints
+    "wp-json/wp/v2/templates",
+    "wp-json/wp/v2/template-parts",
+    "wp-json/wp/v2/navigation",
+    "wp-json/wp/v2/menu-items",
+    "wp-json/wp/v2/menu-locations",
+    
+    # Security & Management
+    "wp-json/wp/v2/application-passwords",
+    "wp-json/wp/v2/site-health",
+    "wp-json/wp/v2/site",
+    
+    # Miscellaneous
+    "wp-json/oembed/1.0/embed",
+    "wp-json/oembed/1.0/proxy",
+    
+    # Additional Hidden/Less Known Endpoints
+    "wp-json/wp/v2/autosaves",
+    "wp-json/wp/v2/revisions",
+    "wp-json/wp/v2/block-patterns",
+    "wp-json/wp/v2/block-pattern-categories"
 ]
 
 def animate():
@@ -37,9 +109,9 @@ def animate():
             print(f"\rSc4nn1ng 3n c0ur5 {char} ", end="", flush=True)
             time.sleep(0.2)
 
-def H4X0R(L1ST3, URL, F1L3=None, OutPut=False):
+def H4X0R(L1ST3, URL, F1L3=None, OutPut=False, V3rb0s3=False):
     T3ST3D = []
-
+    response_counts = Counter()
     # Démarrer l'animation dans un thread séparé
     animation_thread = threading.Thread(target=animate)
     animation_thread.daemon = True
@@ -56,9 +128,12 @@ def H4X0R(L1ST3, URL, F1L3=None, OutPut=False):
         full_url = f"{URL}/{_3L3M3NT5}"
         try:
             response = requests.get(full_url)
-            T3ST3D.append([full_url, response.status_code])
+            status_code = response.status_code
+            T3ST3D.append([full_url, status_code])
+            response_counts[status_code] += 1
         except requests.RequestException as e:
             T3ST3D.append([full_url, str(e)])
+            response_counts[str(e)] += 1
     
     if OutPut:
         OutPuT(T3ST3D, URL)
@@ -66,6 +141,11 @@ def H4X0R(L1ST3, URL, F1L3=None, OutPut=False):
     # Arrêter l'animation
     print("\r" + " " * 20 + "\r", end="", flush=True)  # Effacer le message
     print(tabulate(T3ST3D, headers=["URL", "R3SP0NS3"], tablefmt="rounded_grid"))
+
+    if V3rb0s3:
+        print("\nSumm4ry 0f R3sp0ns3s:")
+        summary = " / ".join([f"{count} r3sp0ns3s {code}" for code, count in response_counts.items()])
+        print(summary)
 
 
 def OutPuT(t4b,URL):
@@ -83,6 +163,7 @@ def H3LP():
     -u URL, -U URL           Sp3c1fy th3 b4s3 URL t0 sc4n
     -f FILE, -F FILE         Sp3c1fy 4 TXT f1l3 c0nt41n1ng 4dd1t10n4l 3ndp01nts t0 sc4n
     -o, -O                   Sp3c1fy 1f Y0U W4nt 4n 0utput f1l3 1n HTML
+    -v, -V                   4dd 4 Pr1nt T0 Sh0w 1nf0 4b0ut R3sp0ns3
 
     Example:
     python WP_JU1CY_SC4NN3R.py -u http://example.com -f endpoints.txt
@@ -98,9 +179,9 @@ def format_url(url):
 
 if __name__ == "__main__":
     C0mm4nd3 = sys.argv
-    URL, P4TH_TO_F1L3, Output = None, None, None
+    URL, P4TH_TO_F1L3, Outputn, V3rb0s3 = None, None, None, None
     
-    if len(sys.argv) < 2 or sys.argv[1] in ["-h", "--help", "h", "help"]:
+    if len(sys.argv) < 2 or any(option in sys.argv for option in ["-h", "--help", "h", "help"]):
         H3LP()
         sys.exit(0)
 
@@ -120,8 +201,11 @@ if __name__ == "__main__":
     
     if "-o" in C0mm4nd3 or "-O" in C0mm4nd3:
         Output = True
+    
+    if "-v" in C0mm4nd3 or "-V" in C0mm4nd3:
+        V3rb0s3= True
 
-    H4X0R(WP_Ju1cy_3ndp01nts, URL, P4TH_TO_F1L3, Output)
+    H4X0R(WP_Ju1cy_3ndp01nts, URL, P4TH_TO_F1L3, Output, V3rb0s3)
 
 
 
