@@ -34,7 +34,7 @@ WP_Ju1cy_3ndp01nts = [
 def animate():
     while True:
         for char in "/-\\|":
-            print(f"\rScanning en cours {char}", end="", flush=True)
+            print(f"\rSc4nn1ng 3n c0ur5 {char}", end="", flush=True)
             time.sleep(0.2)
 
 def H4X0R(L1ST3, URL, F1L3=None, OutPut=False):
