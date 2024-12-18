@@ -55,4 +55,4 @@ C0ntr1but10ns, 1ssu3s, 4nd f34tur3 r3qu3sts 4r3 w3lc0m3!
 
 ## L1c3ns3
 
-[MIT License](LICENSE)
+[MIT License](https://github.com/Romso94/Tool2CTF/blob/main/LICENSE)
