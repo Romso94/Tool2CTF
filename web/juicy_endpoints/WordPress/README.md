@@ -1,58 +1,93 @@
-# WP_JU1CY_SC4NN3R
+---
 
-WP_JU1CY_SC4NN3R is a Python-based tool designed to scan WordPress websites for common endpoints and vulnerabilities. It provides a quick and efficient way to identify potential security issues in WordPress installations.
+<h1 align="center" id="title">WP Ju1cy Sc4nn3r</h1>
 
-## F34tur3s
+<p align="center"><img src="" alt="project-image" width="200"></p>
 
-- Sc4ns pr3d3f1n3d W0rdPr3ss 3ndp01nts
-- Supp0rts cust0m 3ndp01nt l1sts
-- 0utput r3sults 1n HTML f0rm4t
-- V3rb0s3 m0d3 f0r d3t41l3d r3sp0ns3 1nf0rm4t10n
-- 4n1m4t3d sc4nn1ng pr0gr3ss 1nd1c4t0r
+<p align='center' id="description">Python script to scan and test various WordPress endpoints for responses.</p>
 
-## Inst4ll4t10n
+---
 
+<h3>Why ❓</h3>
+
+<p>Facilitate the detection and analysis of WordPress endpoints. This tool allows for easy retrieval of responses from various WordPress endpoints, helping in identifying potential vulnerabilities or issues.</p>
+
+---
+
+<h2>What 📝</h2>
+
+<p>The script will generate a table like this:</p>
+
+| URL | R3SP0NS3 |
+| --- | -------- |
+| http://example.com/wp-admin.php | 200 |
+| http://example.com/wp-login.php | 404 |
+| http://example.com/wp-json/wp/v2/posts | 200 |
+
+---
+
+<h2>🛠️ Installation Steps:</h2>
+
+<p>First, you need Python installed (Python 3).</p>
+
+<p>Then run those commands</p>
+
+```bash
+>> git clone https://github.com/YourUsername/WP_Ju1cy_Sc4nn3r 
+>> cd WP_Ju1cy_Sc4nn3r/ 
+>> pip install -r requirements.txt
 ```
-1. Cl0n3 th3 r3p0s1t0ry :
 
-    > git clone https://github.com/your-username/WP_JU1CY_SC4NN3R.git
+<p>That's it!</p>
 
-2. Inst4ll r3qu1r3d p4ck4g3s:
+---
 
-    > pip install -r requirements.txt
+<h2>🪛 To Run the Script</h2>
+<p>
+Specify the base URL and optionally a file with additional endpoints:
+</p>
 
+```bash
+>> python WP_JU1CY_SC4NN3R.py -u http://example.com -f endpoints.txt -o -v
 ```
 
-## Us4g3
+Options:
 
-B4s1c us4g3 :
+    -u URL: Specify the base URL to scan
+    -f FILE: Specify a TXT file containing additional endpoints to scan
+    -o: Generate an output file in HTML
+    -v: Print detailed information about all responses
 
-```python
-> python WP_JU1CY_SC4NN3R.py -u http://example.com
-```
+---
 
-4dv4nc3d us4g3:
+<h2>💡 Stay Up-to Date</h2>
 
-```python
-> python WP_JU1CY_SC4NN3R.py -u http://example.com -f custom_endpoints.txt -o -v
-```
+To update the list of endpoints locally, just follow these steps:
 
-## 0pt10ns
+1. Edit the WP_Ju1cy_3ndp01nts list in the script to add or remove endpoints.
+2. Save the changes and rerun the script.
 
-- `-h`, `--help`: Sh0w h3lp m3ss4g3 4nd 3x1t
-- `-u URL`, `-U URL`: Sp3c1fy th3 b4s3 URL t0 sc4n
-- `-f FILE`, `-F FILE`: Sp3c1fy 4 TXT f1l3 c0nt41n1ng 4dd1t10n4l 3ndp01nts t0 sc4n
-- `-o`, `-O`: G3n3r4t3 4n HTML 0utput f1l3
-- `-v`, `-V`: 3n4bl3 v3rb0s3 m0d3 f0r d3t41l3d r3sp0ns3 1nf0rm4t10n
+---
 
-## D1scl41m3r
+<h2>💻 Built with</h2>
 
-Th1s t00l 1s f0r 3duc4t10n4l 4nd 3th1c4l t3st1ng purp0s3s 0nly. Us3 r3sp0ns1bly 4nd 0nly 0n syst3ms y0u h4v3 3xpl1c1t p3rm1ss10n t0 t3st.
+Technologies used in the project:
 
-## C0ntr1but1ng
+    Python
+    Requests
+    Tabulate
 
-C0ntr1but10ns, 1ssu3s, 4nd f34tur3 r3qu3sts 4r3 w3lc0m3!
+---
 
-## L1c3ns3
+<h2>Future :</h2>
 
-[MIT License](https://github.com/Romso94/Tool2CTF/blob/main/LICENSE)
+Future improvements could include:
+
+    Adding more WordPress endpoints
+    Improving error handling and logging
+    Integrating with other security tools
+
+---
+
+<h2>🛡️ License:</h2>
+This project is licensed under the MIT License. 
