@@ -33,8 +33,8 @@
 <p>Then run those commands : </p>
 
 ```bash
->> git clone https://github.com/Romso94/Tool2CTF/tree/main/web/juicy_endpoints/WordPress 
->> cd WP_Ju1cy_Sc4nn3r/ 
+>> git clone https://github.com/Romso94/Tool2CTF.git 
+>> cd web/juicy_endpoints/WordPress/ 
 >> pip install -r requirements.txt
 ```
 
