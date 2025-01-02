@@ -8,9 +8,9 @@
 
 ---
 
-<h3>Why ❓</h3>
+<h2>Why ❓</h2>
 
-<p>Facilitate the detection and analysis of WordPress endpoints. This tool allows for easy retrieval of responses from various WordPress endpoints, helping in identifying potential vulnerabilities or issues.</p>
+<p>Facilitate the detection and analysis of WordPress endpoints misconfiguration. This tool allows for easy retrieval of responses from various WordPress endpoints, helping in identifying potential vulnerabilities or issues.</p>
 
 ---
 
@@ -26,11 +26,11 @@
 
 ---
 
-<h2>🛠️ Installation Steps:</h2>
+<h2>🛠️ Installation Steps : </h2>
 
 <p>First, you need Python installed (Python 3).</p>
 
-<p>Then run those commands</p>
+<p>Then run those commands : </p>
 
 ```bash
 >> git clone https://github.com/YourUsername/WP_Ju1cy_Sc4nn3r 
@@ -79,7 +79,7 @@ Technologies used in the project:
 
 ---
 
-<h2>Future :</h2>
+<h2>Future : </h2>
 
 Future improvements could include:
 
@@ -89,5 +89,5 @@ Future improvements could include:
 
 ---
 
-<h2>🛡️ License:</h2>
+<h2>🛡️ License : </h2>
 This project is licensed under the MIT License. 
