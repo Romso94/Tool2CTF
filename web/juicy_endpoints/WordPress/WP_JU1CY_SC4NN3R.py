@@ -18,6 +18,7 @@ WP_Ju1cy_3ndp01nts = [
     "wp-config.php",
     "wp-settings.php",
     "wp-load.php",
+    "robots.txt",
     
     # Core WordPress
     "index.php",
@@ -28,6 +29,7 @@ WP_Ju1cy_3ndp01nts = [
     "wp-links.php",
     "wp-trackback.php",
     "xmlrpc.php",
+    "readme.html",
     
     # Includes
     "wp-includes/",
@@ -148,10 +150,11 @@ def H4X0R(L1ST3, URL, F1L3=None, OutPut=False, V3rb0s3=False):
         print(summary)
 
 
-def OutPuT(t4b,URL):
-    with open(f"./{URL.split('http://')[1]}.html","w",encoding="utf-8") as f:
+def OutPuT(t4b, URL):
+    parsed_url = urlparse(URL)
+    domain = parsed_url.netloc
+    with open(f"./{domain}.html", "w", encoding="utf-8") as f:
         f.write(tabulate(t4b, headers=["URL", "R3SP0NS3"], tablefmt="unsafehtml"))
-    
     return
 
 def H3LP():
@@ -174,7 +177,7 @@ def H3LP():
 def format_url(url):
     parsed_url = urlparse(url)
     if not parsed_url.scheme:
-        url = "http://" + url
+        url = "https://" + url
     return url
 
 if __name__ == "__main__":
