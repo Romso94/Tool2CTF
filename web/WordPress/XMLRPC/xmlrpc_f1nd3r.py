@@ -128,7 +128,7 @@ def H3LP():
     -v, -V                   4dd 4 Pr1nt T0 Sh0w 1nf0 4b0ut 4ll R3sp0ns3s
 
     Example:
-    python .py  -f url.txt -o -v
+    python .py  -f url.txt -o N4M3 -v
     """
 
     print(help_text)
