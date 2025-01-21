@@ -52,7 +52,7 @@
 
 ```
     -u URL: Specify an URL to scan
-    -f FILE: Specify a TXT file containing  all urls to scan
+    -f FILE: Specify a TXT file containing  all urls to scan (example.txt for example)
     -o N4m3: Generate an output file in HTML with the specified name
     -v: Print detailed information about all responses
 ```
