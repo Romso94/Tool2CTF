@@ -31,8 +31,8 @@
 <p>Then run these commands:</p>
 
 ```bash
->> git clone https://github.com/YourUsername/YourRepo.git
->> cd YourRepo
+>> git clone https://github.com/Romso94/Tool2CTF.git 
+>> cd Tool2CTF/web/WordPress/XMLRPC/
 >> pip install -r requirements.txt
 ```
 

@@ -34,7 +34,7 @@
 
 ```bash
 >> git clone https://github.com/Romso94/Tool2CTF.git 
->> cd web/juicy_endpoints/WordPress/ 
+>> cd 'Tool2CTF/web/WordPress/EndPoints Scanner/' 
 >> pip install -r requirements.txt
 ```
 
