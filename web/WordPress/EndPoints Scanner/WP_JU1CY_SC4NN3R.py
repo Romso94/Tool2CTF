@@ -153,8 +153,39 @@ def H4X0R(L1ST3, URL, F1L3=None, OutPut=False, V3rb0s3=False):
 def OutPuT(t4b, URL):
     parsed_url = urlparse(URL)
     domain = parsed_url.netloc
+    html_content = f"""
+    <html>
+    <head>
+        <title>XML-RPC Test Results</title>
+        <style>
+            table {{
+                width: 100%;
+                border-collapse: collapse;
+            }}
+            table, th, td {{
+                border: 1px solid black;
+            }}
+            th, td {{
+                padding: 10px;
+                text-align: left;
+            }}
+            th {{
+                background-color: #f2f2f2;
+            }}
+            pre {{
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }}
+        </style>
+    </head>
+    <body>
+        <h1>Endpoint Scan Results {domain} </h1>
+        {tabulate(t4b, headers=["URL", "R3SP0NS3"], tablefmt="unsafehtml")}
+    </body>
+    </html>
+    """
     with open(f"./{domain}.html", "w", encoding="utf-8") as f:
-        f.write(tabulate(t4b, headers=["URL", "R3SP0NS3"], tablefmt="unsafehtml"))
+        f.write(html_content)
     return
 
 def H3LP():
@@ -182,7 +213,7 @@ def format_url(url):
 
 if __name__ == "__main__":
     C0mm4nd3 = sys.argv
-    URL, P4TH_TO_F1L3, Outputn, V3rb0s3 = None, None, None, None
+    URL, P4TH_TO_F1L3, Outputn, V3rb0s3 = None, None, False, False
     
     if len(sys.argv) < 2 or any(option in sys.argv for option in ["-h", "--help", "h", "help"]):
         H3LP()
@@ -203,12 +234,12 @@ if __name__ == "__main__":
             sys.exit("3rr0r : N0 p4th t0 f1l3 f0und 4ft3r '-f'")
     
     if "-o" in C0mm4nd3 or "-O" in C0mm4nd3:
-        Output = True
+        Outputn = True
     
     if "-v" in C0mm4nd3 or "-V" in C0mm4nd3:
         V3rb0s3= True
 
-    H4X0R(WP_Ju1cy_3ndp01nts, URL, P4TH_TO_F1L3, Output, V3rb0s3)
+    H4X0R(WP_Ju1cy_3ndp01nts, URL, P4TH_TO_F1L3, Outputn, V3rb0s3)
 
 
 

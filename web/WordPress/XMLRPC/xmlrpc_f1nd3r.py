@@ -107,7 +107,7 @@ def OutPuT(t4b, URL, N4M3):
         </style>
     </head>
     <body>
-        <h1>XML-RPC Test Results  </h1>
+        <h1>XML-RPC Scan  Results  </h1>
         {tabulate(t4b, headers=["URL", "C0D3", "R3SP0NS3"], tablefmt="unsafehtml")}
     </body>
     </html>
