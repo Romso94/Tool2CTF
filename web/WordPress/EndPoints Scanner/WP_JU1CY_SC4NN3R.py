@@ -193,11 +193,11 @@ def H3LP():
     Usage: WP_JU1CY_SC4NN3R.py [options]
 
     Options:
-    -h, --help, h, help      Sh0w th1s h3lp m3ssag3 4nd 3x1t
-    -u URL, -U URL           Sp3c1fy th3 b4s3 URL t0 sc4n
-    -f FILE, -F FILE         Sp3c1fy 4 TXT f1l3 c0nt41n1ng 4dd1t10n4l 3ndp01nts t0 sc4n
-    -o, -O                   Sp3c1fy 1f Y0U W4nt 4n 0utput f1l3 1n HTML
-    -v, -V                   4dd 4 Pr1nt T0 Sh0w 1nf0 4b0ut 4ll R3sp0ns3s
+    -h, --help, h, help      Affiche ce message d'aide et quitte
+    -u URL, -U URL           Spécifie une URL unique à scanner
+    -f FILE, -F FILE         Spécifie un fichier TXT contenant des endpoints à scanner
+    -o NAME, -O NAME         Spécifie le nom du fichier de sortie en HTML
+    -v, -V                   Affiche des informations sur toutes les réponses
 
     Example:
     python WP_JU1CY_SC4NN3R.py -u https://example.com -f endpoints.txt -o -v

@@ -118,23 +118,17 @@ def OutPuT(t4b, URL, N4M3):
 
 def H3LP():
     help_text = """
-    Usage: xmlrpc_find3r.py [options]
+    Usage: .py [options]
 
     Options:
-    -h, --help, h, help      Affiche ce message d'aide et quitte
-    -u URL, -U URL           Spécifie une URL unique à scanner
-    -f FILE, -F FILE         Spécifie un fichier TXT contenant des URLs à scanner
-    -o NAME, -O NAME         Spécifie le nom du fichier de sortie en HTML
-    -v, -V                   Affiche des informations sur toutes les réponses
+    -h, --help, h, help      Sh0w th1s h3lp m3ssag3 4nd 3x1t
+    -u URL, -U URL           Sp3c1fy th3 b4s3 URL t0 sc4n
+    -f FILE, -F FILE         Sp3c1fy 4 TXT f1l3 c0nt41n1ng URL t0 sc4n
+    -o, -O                   Sp3c1fy 1f Y0U W4nt 4n 0utput f1l3 1n HTML
+    -v, -V                   4dd 4 Pr1nt T0 Sh0w 1nf0 4b0ut 4ll R3sp0ns3s
 
-    Note:
-    Vous devez utiliser soit -u avec une URL unique, soit -f avec un fichier contenant des URLs.
-    Vous ne pouvez pas utiliser les deux options simultanément.
-
-    Exemple:
-    python xmlrpc_find3r.py  -u https://example.com -o results -v
-    python xmlrpc_find3r.py  -f url.txt -o results -v 
-
+    Example:
+    python .py  -f url.txt -o N4M3 -v
     """
 
     print(help_text)
@@ -163,7 +157,7 @@ def animate():
             time.sleep(0.2)
 
 
-def H4X0R(URL=None, F1L3=None, OutPut=False, V3rb0s3=False, N4M3=None):
+def H4X0R(URL=None, F1L3=None,OnePoint=None, OutPut=False, V3rb0s3=False, N4M3=None, Only_Result=False, Code_Result=None):
     T3ST3D = []
     response_counts = Counter()
     # Démarrer l'animation dans un thread séparé
@@ -177,11 +171,6 @@ def H4X0R(URL=None, F1L3=None, OutPut=False, V3rb0s3=False, N4M3=None):
                     "Content-Type": "text/xml"
                 }
 
-    payload = """<?xml version="1.0" encoding="utf-8"?>
-                <methodCall>
-                <methodName>system.listMethods</methodName>
-                <params></params>
-                </methodCall>"""
 
     if F1L3:
         try:
@@ -191,28 +180,34 @@ def H4X0R(URL=None, F1L3=None, OutPut=False, V3rb0s3=False, N4M3=None):
             sys.exit(f"3rr0r : F1l3 n0t f0und - {F1L3}")
 
         for _3L3M3NT5 in L1ST3:
-            full_url = f"{_3L3M3NT5}/xmlrpc.php"
-            if  full_url != "/xmlrpc.php":
-                try:
-                    response = requests.post(full_url, headers=headers, data=payload)
-                    status_code = response.status_code
-                    formatted_response = format_xml(response.text)
-                    escaped_response = html.escape(formatted_response)
-                    T3ST3D.append([full_url, status_code, f"<pre>{escaped_response}</pre>"])
+            full_url = _3L3M3NT5
+            if full_url[-1] != "/" :
+                full_url += f"/{OnePoint}"
+            else : 
+                full_url += OnePoint
+            try:
+                response = requests.get(full_url, headers=headers)
+                status_code = response.status_code
+                if Only_Result and status_code == Code_Result:
+                    T3ST3D.append([full_url, status_code])
                     response_counts[status_code] += 1
-                except requests.RequestException as e:
-                    T3ST3D.append([full_url, str(e), str(e)])
-                    response_counts[str(e)] += 1
+            except requests.RequestException as e:
+                T3ST3D.append([full_url, str(e), str(e)])
+                response_counts[str(e)] += 1
     elif URL:
+        full_url = URL
+        if full_url[-1] != "/" :
+            full_url += f"/{OnePoint}"
+        else : 
+            full_url += OnePoint
         try:
-            response = requests.post(f"{URL}/xmlrpc.php", headers=headers, data=payload)
+            response = requests.get(full_url, headers=headers)
             status_code = response.status_code
-            formatted_response = format_xml(response.text)
-            escaped_response = html.escape(formatted_response)
-            T3ST3D.append([f"{URL}/xmlrpc.php", status_code, f"<pre>{escaped_response}</pre>"])
-            response_counts[status_code] += 1
+            if Only_Result and status_code == Code_Result:
+                    T3ST3D.append([full_url, status_code])
+                    response_counts[status_code] += 1
         except requests.RequestException as e:
-            T3ST3D.append([f"{URL}/xmlrpc.php", str(e), str(e)])
+            T3ST3D.append([full_url, str(e), str(e)])
             response_counts[str(e)] += 1
 
 
@@ -234,7 +229,7 @@ def OutPuT(t4b, URL, N4M3):
     html_content = f"""
     <html>
     <head>
-        <title>XML-RPC Test Results</title>
+        <title>OnePoint Detection Test Results</title>
         <style>
             table {{
                 width: 100%;
@@ -257,8 +252,8 @@ def OutPuT(t4b, URL, N4M3):
         </style>
     </head>
     <body>
-        <h1>XML-RPC Test Results  </h1>
-        {tabulate(t4b, headers=["URL", "C0D3", "R3SP0NS3"], tablefmt="unsafehtml")}
+        <h1>OnePoint Detection Test Results </h1>
+        {tabulate(t4b, headers=["URL", "C0D3"], tablefmt="unsafehtml")}
     </body>
     </html>
     """
@@ -268,22 +263,24 @@ def OutPuT(t4b, URL, N4M3):
 
 def H3LP():
     help_text = """
-    Us4g3: xmlrpc_f1nd3r.py [0pti0ns]
+    Usage: OnePointDetection.py [options]
 
-    0pti0ns:
-    -h, --help, h, help      Sh0w this h3lp m3ss4g3 4nd 3xit
-    -u URL, -U URL           Sp3c1fy 4 s1ngl3 URL t0 sc4n
-    -f F1L3, -F F1L3         Sp3c1fy 4 TXT f1l3 c0nt41n1ng URLs t0 sc4n
-    -o N4m3, -O N4m3         Sp3c1fy th3 n4m3 0f th3 0utput f1l3 1n HTML
-    -v, -V                   4dd 4 pr1nt t0 sh0w 1nf0 4b0ut 4ll r3sp0ns3s
+    Options:
+    -h, --help, h, help      Affiche ce message d'aide et quitte
+    -u URL, -U URL           Spécifie une URL unique à scanner
+    -f FILE, -F FILE         Spécifie un fichier TXT contenant des URLs à scanner
+    -o NAME, -O NAME         Spécifie le nom du fichier de sortie en HTML
+    -v, -V                   Affiche des informations sur toutes les réponses
+    -p OnePoint, -P OnePoint Spécifie le endpoint  à vérifier
+    -or Code, -OR Code       Affiche uniquement les résultats avec le code de statut réponse HTTP/HTTPS spécifié
 
-    N0t3:
-    Y0u must us3 31th3r -u w1th 4 s1ngl3 URL 0r -f w1th 4 f1l3 c0nt41n1ng URLs.
-    Y0u c4nn0t us3 b0th 0pti0ns s1mult4n30usly.
+    Note:
+    Vous devez utiliser soit -u avec une URL unique, soit -f avec un fichier contenant des URLs.
+    Vous ne pouvez pas utiliser les deux options simultanément.
 
-    Ex4mpl3:
-    python xmlrpc_f1nd3r.py -u https://example.com -o r3sults -v
-    python xmlrpc_f1nd3r.py -f url.txt -o r3sults -v
+    Exemple:
+    python OnePointDetection.py -u https://example.com -o results -v
+    python OnePointDetection.py -f url.txt -o results -v -or 200
     """
     print(help_text)
 
@@ -304,7 +301,7 @@ def format_xml(xml_string):
 
 if __name__ == "__main__":
     C0mm4nd3 = sys.argv
-    URL, P4TH_TO_F1L3, Outputn, V3rb0s3, N4M3 = None, None, False, False, None
+    URL, P4TH_TO_F1L3, Onepoint, Outputn, V3rb0s3, N4M3, Only_Result, Code_Result  = None, None,None, False, False, None, False, None
     
     if len(sys.argv) < 2 or any(option in sys.argv for option in ["-h", "--help", "h", "help"]):
         H3LP()
@@ -335,5 +332,23 @@ if __name__ == "__main__":
     if "-v" in C0mm4nd3 or "-V" in C0mm4nd3:
         V3rb0s3= True
 
-    H4X0R(URL, P4TH_TO_F1L3, Outputn, V3rb0s3, N4M3)
+    if "-p" in C0mm4nd3 or "-P" in C0mm4nd3:
+        Ind3x = C0mm4nd3.index("-p") + 1 if "-p" in C0mm4nd3 else C0mm4nd3.index("-P") + 1
+        if Ind3x < len(C0mm4nd3):
+            Onepoint = C0mm4nd3[Ind3x]
+        else:
+            sys.exit("3rr0r : N0 endpoint f0und 4ft3r '-p'")
+    
+    if "-or" in C0mm4nd3 or "-OR" in C0mm4nd3:
+        Only_Result = True
+        Ind3x = C0mm4nd3.index("-or") + 1 if "-or" in C0mm4nd3 else C0mm4nd3.index("-OR") + 1
+        if Ind3x < len(C0mm4nd3):
+            try :
+                Code_Result = int(C0mm4nd3[Ind3x])
+            except : 
+                sys.exit("3rr0r : Invalid Status C0d3 f0und 4ft3r '-or'")
+        else:
+            sys.exit("3rr0r : N0 status C0d3 f0und 4ft3r '-or'")
+
+    H4X0R(URL, P4TH_TO_F1L3,Onepoint, Outputn, V3rb0s3, N4M3, Only_Result, Code_Result)
 
