@@ -186,14 +186,18 @@ def H4X0R(URL=None, F1L3=None,OnePoint=None, OutPut=False, V3rb0s3=False, N4M3=N
             else : 
                 full_url += OnePoint
             try:
+                full_url = format_url(full_url)
                 response = requests.get(full_url, headers=headers)
                 status_code = response.status_code
                 if Only_Result and status_code == Code_Result:
                     T3ST3D.append([full_url, status_code])
                     response_counts[status_code] += 1
             except requests.RequestException as e:
-                T3ST3D.append([full_url, str(e), str(e)])
-                response_counts[str(e)] += 1
+                if Only_Result : 
+                    pass
+                else : 
+                    T3ST3D.append([full_url, str(e)])
+                    response_counts[str(e)] += 1
     elif URL:
         full_url = URL
         if full_url[-1] != "/" :
@@ -201,14 +205,18 @@ def H4X0R(URL=None, F1L3=None,OnePoint=None, OutPut=False, V3rb0s3=False, N4M3=N
         else : 
             full_url += OnePoint
         try:
+            full_url = format_url(full_url)
             response = requests.get(full_url, headers=headers)
             status_code = response.status_code
             if Only_Result and status_code == Code_Result:
                     T3ST3D.append([full_url, status_code])
                     response_counts[status_code] += 1
         except requests.RequestException as e:
-            T3ST3D.append([full_url, str(e), str(e)])
-            response_counts[str(e)] += 1
+            if Only_Result : 
+                pass
+            else : 
+                T3ST3D.append([full_url, str(e)])
+                response_counts[str(e)] += 1
 
 
     if OutPut:
