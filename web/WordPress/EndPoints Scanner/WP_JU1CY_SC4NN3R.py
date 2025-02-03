@@ -196,7 +196,7 @@ def H3LP():
     -h, --help, h, help      Affiche ce message d'aide et quitte
     -u URL, -U URL           Spécifie une URL unique à scanner
     -f FILE, -F FILE         Spécifie un fichier TXT contenant des endpoints à scanner
-    -o NAME, -O NAME         Spécifie le nom du fichier de sortie en HTML
+    -o, -O                   Spécifie un fichier de sortie en HTML
     -v, -V                   Affiche des informations sur toutes les réponses
 
     Example:
@@ -240,9 +240,3 @@ if __name__ == "__main__":
         V3rb0s3= True
 
     H4X0R(WP_Ju1cy_3ndp01nts, URL, P4TH_TO_F1L3, Outputn, V3rb0s3)
-
-
-
-    
-    
-    

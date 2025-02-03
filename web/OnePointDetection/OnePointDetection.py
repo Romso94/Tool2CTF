@@ -287,8 +287,8 @@ def H3LP():
     Vous ne pouvez pas utiliser les deux options simultanément.
 
     Exemple:
-    python OnePointDetection.py -u https://example.com -o results -v
-    python OnePointDetection.py -f url.txt -o results -v -or 200
+    python OnePointDetection.py -u https://example.com -o results -p test.php -v
+    python OnePointDetection.py -f url.txt -o results -v -p test.php -or 200
     """
     print(help_text)
 
