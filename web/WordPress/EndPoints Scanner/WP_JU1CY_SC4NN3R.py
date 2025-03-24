@@ -139,8 +139,8 @@ def H4X0R(L1ST3, URL, F1L3=None, OutPut=False, V3rb0s3=False):
             response_counts[str(e)] += 1
     
     if OutPut:
+        print("Building Report")
         OutPuT(T3ST3D, URL)
-    print(tabulate(T3ST3D, headers=["URL","C0D3"], tablefmt="rounded_grid"))
 
     if V3rb0s3:
         print("\nSumm4ry 0f R3sp0ns3s:")
