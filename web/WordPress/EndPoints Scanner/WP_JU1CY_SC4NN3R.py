@@ -3,8 +3,10 @@ import threading
 import time
 from typing import Counter
 from urllib.parse import urlparse
+from xml.sax import parseString
 from tabulate import tabulate
 import requests
+import html
 
 WP_Ju1cy_3ndp01nts = [
     # Administration
@@ -105,19 +107,12 @@ WP_Ju1cy_3ndp01nts = [
     "wp-json/wp/v2/block-pattern-categories"
 ]
 
-def animate():
-    while True:
-        for char in "/-\\|":
-            print(f"\rSc4nn1ng 3n c0ur5 {char} ", end="", flush=True)
-            time.sleep(0.2)
+
 
 def H4X0R(L1ST3, URL, F1L3=None, OutPut=False, V3rb0s3=False):
     T3ST3D = []
     response_counts = Counter()
-    # Démarrer l'animation dans un thread séparé
-    animation_thread = threading.Thread(target=animate)
-    animation_thread.daemon = True
-    animation_thread.start()
+    
 
     if F1L3:
         try:
@@ -129,20 +124,22 @@ def H4X0R(L1ST3, URL, F1L3=None, OutPut=False, V3rb0s3=False):
     for _3L3M3NT5 in L1ST3:
         full_url = f"{URL}/{_3L3M3NT5}"
         try:
+            print(f"Request : {full_url}")
             response = requests.get(full_url)
             status_code = response.status_code
-            T3ST3D.append([full_url, status_code])
+            formatted_response = format_xml(response.text)
+            escaped_response = html.escape(formatted_response)
+            T3ST3D.append([full_url, status_code, f"<pre>{escaped_response}</pre>"])
             response_counts[status_code] += 1
         except requests.RequestException as e:
-            T3ST3D.append([full_url, str(e)])
+            T3ST3D.append([full_url, str(e), str(e)])
             response_counts[str(e)] += 1
     
     if OutPut:
         OutPuT(T3ST3D, URL)
 
-    # Arrêter l'animation
-    print("\r" + " " * 20 + "\r", end="", flush=True)  # Effacer le message
-    print(tabulate(T3ST3D, headers=["URL", "R3SP0NS3"], tablefmt="rounded_grid"))
+   
+    print(tabulate(T3ST3D, headers=["URL","C0D3","R3SP0NS3"], tablefmt="rounded_grid"))
 
     if V3rb0s3:
         print("\nSumm4ry 0f R3sp0ns3s:")
@@ -180,7 +177,7 @@ def OutPuT(t4b, URL):
     </head>
     <body>
         <h1>Endpoint Scan Results {domain} </h1>
-        {tabulate(t4b, headers=["URL", "R3SP0NS3"], tablefmt="unsafehtml")}
+        {tabulate(t4b, headers=["URL","C0D3","R3SP0NS3"], tablefmt="unsafehtml")}
     </body>
     </html>
     """
@@ -210,6 +207,13 @@ def format_url(url):
     if not parsed_url.scheme:
         url = "https://" + url
     return url
+
+def format_xml(xml_string):
+    try:
+        dom = parseString(xml_string)
+        return dom.toprettyxml()
+    except Exception as e:
+        return xml_string
 
 if __name__ == "__main__":
     C0mm4nd3 = sys.argv
