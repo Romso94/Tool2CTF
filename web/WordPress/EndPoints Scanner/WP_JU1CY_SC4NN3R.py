@@ -127,8 +127,11 @@ def H4X0R(L1ST3, URL, F1L3=None, OutPut=False, V3rb0s3=False):
             print(f"Request : {full_url}")
             response = requests.get(full_url)
             status_code = response.status_code
-            formatted_response = format_xml(response.text)
-            escaped_response = html.escape(formatted_response)
+            if status_code==200:
+                formatted_response = format_xml(response.text)
+                escaped_response = html.escape(formatted_response)
+            else : 
+                escaped_response = ""
             T3ST3D.append([full_url, status_code, f"<pre>{escaped_response}</pre>"])
             response_counts[status_code] += 1
         except requests.RequestException as e:
@@ -137,9 +140,7 @@ def H4X0R(L1ST3, URL, F1L3=None, OutPut=False, V3rb0s3=False):
     
     if OutPut:
         OutPuT(T3ST3D, URL)
-
-   
-    print(tabulate(T3ST3D, headers=["URL","C0D3","R3SP0NS3"], tablefmt="rounded_grid"))
+    print(tabulate(T3ST3D, headers=["URL","C0D3"], tablefmt="rounded_grid"))
 
     if V3rb0s3:
         print("\nSumm4ry 0f R3sp0ns3s:")
